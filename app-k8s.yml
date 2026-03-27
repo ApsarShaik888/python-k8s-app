@@ -1,0 +1,20 @@
+# create a replicaset for app and deploy the app in k8s
+#
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: python-app-rs
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      name: python-app
+  template:
+    metadata:
+      labels:
+        name: python-app
+    spec:
+      containers:
+        - name: app-coo
+          image: simple-python-app:v4
+          imagePullPolicy: Never
